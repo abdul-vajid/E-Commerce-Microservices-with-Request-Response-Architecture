@@ -1,0 +1,16 @@
+# Base image
+FROM nginx
+
+# Copy nginx configuration
+COPY nginx_prod.conf /etc/nginx/nginx.conf
+COPY ./ssl/cert.cert /ssl/
+COPY ./ssl/cert.key /ssl/
+
+# Set environment variable
+ENV NODE_ENV=production
+
+# Expose port 443
+EXPOSE 443
+
+# Start nginx
+CMD ["nginx", "-g", "daemon off;"]

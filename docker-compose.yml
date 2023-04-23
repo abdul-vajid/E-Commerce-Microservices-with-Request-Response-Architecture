@@ -1,0 +1,101 @@
+services:
+  load-balancer:
+    build:
+      context: ./LoadBalancerService
+      dockerfile: Dockerfile.${BUILD_ENV:-development}
+    environment:
+      BUILD_ENV: development
+  # auth:
+  #   build: ./AuthService
+  #   ports:
+  #     - "3001:3001"
+  #   environment:
+  #     - MONGO_URL=mongodb://auth_mongo:27017/mca_authdb
+  #   depends_on:
+  #     - auth_mongo
+  #     - kafka
+  #   networks:
+  #     - myChatApp
+  # chat:
+  #   build: ./ChatService
+  #   ports:
+  #     - "3002:3002"
+  #   environment:
+  #     - KAFKA_URL=kafka:9092
+  #     - MONGO_URL=mongodb://chat_mongo:27017/mca_chatdb
+  #   depends_on:
+  #     - chat_mongo
+  #     - kafka
+  #   networks:
+  #     - myChatApp
+  # posts:
+  #   build: ./PostsService
+  #   ports:
+  #     - "3003:3003"
+  #   environment:
+  #     - MONGO_URL=mongodb://posts_mongo:27017/mca_postsdb
+  #   depends_on:
+  #     - posts_mongo
+  #   networks:
+  #     - myChatApp
+  # user:
+  #   build: ./UserService
+  #   ports:
+  #     - "3004:3004"
+  #   environment:
+  #     - MONGO_URL=mongodb://user_mongo:27017/mca_userdb
+  #   depends_on:
+  #     - user_mongo
+  #   networks:
+  #     - myChatApp
+  # auth_mongo:
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=mca_authdb
+  #   ports:
+  #     - "27017:27017"
+  #   networks:
+  #     - myChatApp
+  # chat_mongo:
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=mca_chatdb
+  #   ports:
+  #     - "27018:27017"
+  #   networks:
+  #     - myChatApp
+  # posts_mongo:
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=mca_postsdb
+  #   ports:
+  #     - "27019:27017"
+  #   networks:
+  #     - myChatApp
+  # user_mongo:
+  #   image: mongo:latest
+  #   environment:
+  #     - MONGO_INITDB_DATABASE=mca_userdb
+  #   ports:
+  #     - "27020:27017"
+  #   networks:
+  #     - myChatApp
+  # kafka:
+  #   image: wurstmeister/kafka
+  #   environment:
+  #     - KAFKA_ADVERTISED_LISTENERS=PLAINTEXT://kafka:9092
+  #     - KAFKA_ZOOKEEPER_CONNECT=zookeeper:2181
+  #   ports:
+  #     - "9092:9092"
+  #   depends_on:
+  #     - zookeeper
+  #   networks:
+  #     - myChatApp
+  # zookeeper:
+  #   image: wurstmeister/zookeeper
+  #   ports:
+  #     - "2181:2181"
+  #   networks:
+  #     - myChatApp
+# networks:
+#   myChatApp:
