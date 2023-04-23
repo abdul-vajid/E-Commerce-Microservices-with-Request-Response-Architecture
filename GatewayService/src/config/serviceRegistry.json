@@ -1,0 +1,20 @@
+{
+    "services": {
+        "auth": [
+            {
+                "apiName": "auth",
+                "host": "localhost",
+                "protocol": "http",
+                "port": 5001,
+                "url": "http://localhost:5001/api/v1"
+            },
+            {
+                "apiName": "auth",
+                "host": "localhost",
+                "protocol": "http",
+                "port": 5011,
+                "url": "http://localhost:5011/api/v1"
+            }
+        ]
+    }
+}
