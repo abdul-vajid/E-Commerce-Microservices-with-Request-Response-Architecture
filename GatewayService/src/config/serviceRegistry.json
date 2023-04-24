@@ -1,1 +1,23 @@
-{"services":{"auth":{"index":0,"url":["http://localhost:5001/api/v1"]},"post":{"index":0,"url":["http://localhost:5000/api/v1","http://localhost:5001/api/v1"]},"chat":{"index":0,"url":["http://localhost:6000/api/v1"]}}}
+{
+    "services": {
+        "auth": {
+            "index": 0,
+            "url": [
+                "http://auth:3000/api/v1"
+            ]
+        },
+        "post": {
+            "index": 0,
+            "url": [
+                "http://localhost:5000/api/v1",
+                "http://localhost:5001/api/v1"
+            ]
+        },
+        "chat": {
+            "index": 0,
+            "url": [
+                "http://localhost:6000/api/v1"
+            ]
+        }
+    }
+}

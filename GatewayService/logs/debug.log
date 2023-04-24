@@ -1,0 +1,18 @@
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:49:43"}
+{"level":"debug","message":"This is a debug log message","service":"micro","timestamp":"2023-04-24 16:49:43"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:50:15"}
+{"level":"debug","message":"This is a debug log message","service":"micro","timestamp":"2023-04-24 16:50:15"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:51:40"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:52:25"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:52:53"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:55:26"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:56:09"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:57:45"}
+{"level":"debug","message":"This is a debug log message","service":"micro","timestamp":"2023-04-24 16:57:45"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:58:42"}
+{"level":"debug","message":"This is a debug log message","service":"micro","timestamp":"2023-04-24 16:58:42"}
+{"level":"info","message":"GET /api/v1/auth?id=1","service":"micro","timestamp":"2023-04-24 16:59:00"}
+{"level":"info","message":"GET /api/v1/auth1?id=1","service":"micro","timestamp":"2023-04-24 16:59:27"}
+{"level":"info","message":"GET /api/v1/auth/reset?id=1","service":"micro","timestamp":"2023-04-24 17:00:05"}
+{"level":"info","message":"GET /api/v1/auth/test?id=1","service":"micro","timestamp":"2023-04-24 17:00:14"}
+{"level":"debug","message":"This is a debug log message","service":"micro","timestamp":"2023-04-24 17:00:14"}

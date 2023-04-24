@@ -7,7 +7,7 @@ const app = express();
 import router from './src/router/index.js'
 app.use('/api/v1/', router);
 
-const PORT = process.env.PORT || 5001;
+const PORT = process.env.PORT || 3000;
 
 app.listen(PORT, () => {
     console.log(`Auth Service is running in port ${PORT}`);

@@ -1,6 +1,7 @@
 import axios from 'axios';
 import registory from '../config/serviceRegistry.json' assert { type: "json" };
 import fs from 'fs';
+import logger from '../middlewares/logging.js';
 
 const routeAll = (req, res, next) => {
     try {
@@ -8,7 +9,8 @@ const routeAll = (req, res, next) => {
         const query = req.originalUrl.split('?')[1];
         const path = req.params.path;
         const baseUrl = getBaseUrl(appName, path, query);
-        
+        logger.log('silly','This is a silly log message');
+        logger.log('debug','This is a debug log message');
         axios({
             method: req.method,
             url: baseUrl,
@@ -19,7 +21,7 @@ const routeAll = (req, res, next) => {
         })
     } catch (err) {
         console.error("Error occuered : ", err);
-        res.status(500).send({status: 500, data: err})
+        res.status(500).send({ status: 500, data: err })
         // next(err);
     }
 }
@@ -34,7 +36,7 @@ const getBaseUrl = (appName, path, query) => {
     const length = api.url.length;
     let index = api.index;
 
-    if (length-1 <= index) {
+    if (length - 1 <= index) {
         index = 0;
     }
     else {
@@ -42,7 +44,7 @@ const getBaseUrl = (appName, path, query) => {
     }
     registory.services[appName].index = index;
     fs.writeFile('./src/config/serviceRegistry.json', JSON.stringify(registory), (error) => {
-        if(error) {
+        if (error) {
             console.error(error);
         }
     });
