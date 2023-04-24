@@ -3,8 +3,6 @@ import controller from '../controller/routingController.js';
 
 const router = Router();
 
-router.post('/instance', controller.registerInstance);
-
 router.all('/:appName/:path(*)?', controller.routeAll);
 
 export default router;
