@@ -10,6 +10,7 @@ services:
       - "443:443"
     networks:
       - public-network
+      
   gateway:
     build: ./GatewayService
     ports:
@@ -19,18 +20,52 @@ services:
     networks:
       - public-network
       - private-network
+
   auth:
     build: ./AuthService
     ports:
       - "3000:3000"
-    # environment:
-    #   - MONGO_URL=mongodb://auth_mongo:27017/micro_authdb
+    environment:
+      - MONGO_URL=mongodb://authServiceMongo:27013/ping_authDb
     depends_on:
       - gateway
-      # - kafka
+    networks:
+      - private-network
+  authServiceMongo:
+    image: mongo:latest
+    container_name: authServiceMongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=authroot
+    volumes:
+      - ./data/authService:/data/db
+    ports:
+      - "27013:27017"
     networks:
       - private-network
 
+  user:
+    build: ./UserService
+    ports:
+      - "6000:6000"
+    environment:
+      - MONGO_URL=mongodb://userServiceMongo:27016/ping_userDb
+    depends_on:
+      - gateway
+    networks:
+      - private-network
+  userServiceMongo:
+    image: mongo:latest
+    container_name: userServiceMongo
+    environment:
+      - MONGO_INITDB_ROOT_USERNAME=root
+      - MONGO_INITDB_ROOT_PASSWORD=userroot
+    volumes:
+      - ./data/userService:/data/db
+    ports:
+      - "27016:27017"
+    networks:
+      - private-network
 
 networks:
   public-network:

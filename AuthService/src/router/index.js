@@ -1,10 +1,8 @@
 import { Router } from 'express';
+import controller from '../controllers/userController.js';
 
 const router = Router();
 
-router.get('/:appName', (req, res, next) => {
-    console.log("App name is ", req.params.appName);
-    res.send(`Hello ${req.params.appName} from Auth Service`);
-})
+router.post('/register', controller.addUser)
 
 export default router;
