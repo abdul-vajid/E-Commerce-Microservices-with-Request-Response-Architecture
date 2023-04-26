@@ -25,14 +25,16 @@ app.use((err, req, res, next) => {
 
 /* MONGOOSE SETUP*/
 import mongoose from 'mongoose';
-const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/micro_userDb"
+const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/ping_userDb"
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
     console.log("MongoDB connected successfully!");
-}).catch((error) => console.log(`${error} did not connect`))
-
-app.listen(PORT, () => {
-    console.log(`User service is running in port ${PORT}`);
+    app.listen(PORT, () => {
+        console.log(`User service is running in port ${PORT}`);
+    })
+}).catch((error) => {
+    console.log(`${error} did not connect`)
+    console.log(`User MongoDB disconnected.......`)
 })

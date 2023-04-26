@@ -1,10 +1,16 @@
-import { Router } from 'express';
-import controller from '../controller/routingController.js';
-import rateLimiter from '../middlewares/rateLimiter.js'
-import verifyToken from '../middlewares/auth.js'
+import s2CRouter from './s2CRouter.js';
+import s2SRouter from './s2SRouter.js';
+import express from 'express';
+import errorHandler from '../utils/handlers/errorHandler.js';
+const app = express();
 
-const router = Router();
+//Router to service-to-service(S2S) communication
+app.use('/private', s2SRouter);
 
-router.all('/:appName/:path(*)?',rateLimiter, verifyToken, controller.routeAll);
+//Router to service-to-client(S2C) communication
+app.use('/', s2CRouter);
 
-export default router;
+
+app.use(errorHandler);
+
+export default app;

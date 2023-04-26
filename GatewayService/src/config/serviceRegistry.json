@@ -4,20 +4,25 @@
             "index": 0,
             "url": [
                 "http://auth:3000/api/v1"
-            ]
+            ],
+            "username": "authusername",
+            "password": "authpassword"
         },
-        "post": {
+        "user": {
             "index": 0,
             "url": [
-                "http://localhost:5000/api/v1",
-                "http://localhost:5001/api/v1"
-            ]
+                "http://localhost:6000/api/v1"
+            ],
+            "username": "userusername",
+            "password": "userpassword"
         },
         "chat": {
             "index": 0,
             "url": [
                 "http://localhost:6000/api/v1"
-            ]
+            ],
+            "username": "",
+            "password": ""
         }
     }
 }

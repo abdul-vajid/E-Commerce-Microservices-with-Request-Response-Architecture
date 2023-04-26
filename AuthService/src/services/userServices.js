@@ -1,6 +1,4 @@
 import User from "../models/userModel.js";
-import produceMessage from '../utils/config/kafkaConfig.js'
-import topicConstants from '../utils/constants/topicConstants.js'
 
 // import bcrypt from 'bcrypt';
 
@@ -62,7 +60,7 @@ const addUserServiceUser = async (body) => {
     return new Promise(async (resolve, reject) => {
         try {
             // axios call to user service
-            console.log(response)
+            console.log(body)
             resolve(body);
         } catch (error) {
             reject(error)

@@ -20,15 +20,19 @@ app.use((err, req, res, next) => {
 
 /* MONGOOSE SETUP*/
 import mongoose from 'mongoose';
-const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/micro_authDb"
+const MONGO_URL = process.env.MONGO_URL;
+// const MONGO_URL = "mongodb://authServiceMongo:27013/ping_authDb"
+console.log("------------Mongo URL--------------", MONGO_URL);
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
 }).then(() => {
     console.log("MongoDB connected successfully!");
-}).catch((error) => console.log(`${error} did not connect`))
-
-
-app.listen(PORT, () => {
-    console.log(`Auth Service is running in port ${PORT}`);
+    app.listen(PORT, () => {
+        console.log(`Auth Service is running in port ${PORT}`);
+    })
+}).catch((error) => {
+    console.log(`${error} did not connect`)
+    console.log(`Auth MongoDB disconnected.......`)
 })
+

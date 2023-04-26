@@ -1,46 +1,43 @@
 services:
-  load-balancer:
-    build:
-      context: ./LoadBalancerService
-      dockerfile: Dockerfile.${BUILD_ENV:-development}
-    environment:
-      BUILD_ENV: development
-    ports:
-      - "80:80"
-      - "443:443"
-    networks:
-      - public-network
+  # load-balancer:
+  #   build:
+  #     context: ./LoadBalancerService
+  #     dockerfile: Dockerfile.${BUILD_ENV:-development}
+  #   environment:
+  #     BUILD_ENV: development
+  #   ports:
+  #     - "80:80"
+  #     - "443:443"
+  #   networks:
+  #     - public-network
       
-  gateway:
-    build: ./GatewayService
-    ports:
-      - "5000:5000"
-    depends_on:
-      - load-balancer
-    networks:
-      - public-network
-      - private-network
+  # gateway:
+  #   build: ./GatewayService
+  #   ports:
+  #     - "5000:5000"
+  #   depends_on:
+  #     - load-balancer
+  #   networks:
+  #     - public-network
+  #     - private-network
 
   auth:
     build: ./AuthService
     ports:
       - "3000:3000"
     environment:
-      - MONGO_URL=mongodb://authServiceMongo:27013/ping_authDb
+      - MONGO_URL=mongodb://authServiceMongo:27017/ping_authDb
     depends_on:
-      - gateway
+      - authServiceMongo
     networks:
       - private-network
   authServiceMongo:
     image: mongo:latest
     container_name: authServiceMongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=authroot
     volumes:
       - ./data/authService:/data/db
     ports:
-      - "27013:27017"
+      - "27017:27017"
     networks:
       - private-network
 
@@ -49,17 +46,14 @@ services:
     ports:
       - "6000:6000"
     environment:
-      - MONGO_URL=mongodb://userServiceMongo:27016/ping_userDb
+      - MONGO_URL=mongodb://userServiceMongo:27017/ping_userDb
     depends_on:
-      - gateway
+      - userServiceMongo
     networks:
       - private-network
   userServiceMongo:
     image: mongo:latest
     container_name: userServiceMongo
-    environment:
-      - MONGO_INITDB_ROOT_USERNAME=root
-      - MONGO_INITDB_ROOT_PASSWORD=userroot
     volumes:
       - ./data/userService:/data/db
     ports:
