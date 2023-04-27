@@ -11,7 +11,7 @@
         "user": {
             "index": 0,
             "url": [
-                "http://localhost:6000/api/v1"
+                "http://user:6000/api/v1"
             ],
             "username": "userusername",
             "password": "userpassword"

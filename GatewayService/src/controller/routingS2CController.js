@@ -3,6 +3,7 @@ import registory from '../config/serviceRegistry.json' assert { type: "json" };
 import fs from 'fs';
 import logger from '../middlewares/logging.js';
 import ErrorResponse from '../utils/handlers/ErrorResponse.js';
+import logging from '../middlewares/logging.js';
 
 const routeAll = (req, res, next) => {
     try {
@@ -10,15 +11,35 @@ const routeAll = (req, res, next) => {
         const query = req.originalUrl.split('?')[1];
         const path = req.params.path;
         const baseUrl = getBaseUrl(appName, path, query);
+        console.log(baseUrl)
+        axios({
+            method: "GET",
+            url: "https://jsonplaceholder.typicode.com/todos/1",
+            // headers: req.headers,
+            // data: req.body
+        }).then((response) => {
+            console.log(response.data)
+            res.send(JSON.stringify(response.data));
+        })
+        .catch(error => {
+            console.log(error)
+            return next(ErrorResponse.notFound(error))
+        })
         axios({
             method: req.method,
             url: baseUrl,
             headers: req.headers,
-            data: req.body
+            data: req.body,
+            timeout: 10000
         }).then((response) => {
+            console.log(response)
             res.send(JSON.stringify(response.data));
         })
+        .catch(error => {
+            return next(new ErrorResponse.notFound(error.message))
+        })
     } catch (err) {
+        console.log(err)
         return next(err);
     }
 }
@@ -43,7 +64,8 @@ const getBaseUrl = (appName, path, query) => {
             logger.log("error", error.message);
         }
     });
-    return `${api.url[index]}/${appName}/${path ? path : ""}?${query}`;
+    let queryString = query ? `?${query}` : "";
+    return `${api.url[index]}/${path ? path : ""}${queryString}`;
 }
 
 export default {

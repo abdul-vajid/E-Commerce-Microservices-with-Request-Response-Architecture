@@ -23,3 +23,7 @@
 {"level":"info","message":"POST /api/v1/user","service":"micro","timestamp":"2023-04-24 20:35:48"}
 {"level":"info","message":"POST /api/v1/user","service":"micro","timestamp":"2023-04-24 20:36:26"}
 {"level":"info","message":"GET /api/v1/getAllUsers","service":"micro","timestamp":"2023-04-24 20:37:22"}
+{"level":"info","message":"POST /api/v1/auth/register","service":"micro","timestamp":"2023-04-26 19:15:30"}
+{"level":"info","message":"POST /api/v1/auth/register","service":"micro","timestamp":"2023-04-26 19:16:11"}
+{"level":"info","message":"POST /api/v1/auth/register","service":"micro","timestamp":"2023-04-26 19:16:13"}
+{"level":"info","message":"POST /api/v1/auth/register","service":"micro","timestamp":"2023-04-26 19:16:14"}

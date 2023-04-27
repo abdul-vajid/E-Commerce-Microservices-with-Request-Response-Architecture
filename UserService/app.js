@@ -18,14 +18,15 @@ import logging from './src/middlewares/logging.js'
 app.use(logging.requestLogger);
 
 app.use('/api/v1/', router);
-app.use((err, req, res, next) => {
-    console.error(JSON.stringify(err));
-    res.status(500).send({status: 500, message: err.details[0].message});
-})
+
+import errorHandler from './src/utils/handlers/errorHandler.js';
+app.use(errorHandler);
 
 /* MONGOOSE SETUP*/
 import mongoose from 'mongoose';
-const MONGO_URL = process.env.MONGO_URL || "mongodb://127.0.0.1:27017/ping_userDb"
+
+const MONGO_URL = process.env.MONGO_URL
+// const MONGO_URL = "mongodb://127.0.0.1:27017/ping_userDb"
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

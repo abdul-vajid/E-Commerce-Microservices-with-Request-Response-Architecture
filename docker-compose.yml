@@ -11,35 +11,35 @@ services:
   #   networks:
   #     - public-network
       
-  # gateway:
-  #   build: ./GatewayService
-  #   ports:
-  #     - "5000:5000"
-  #   depends_on:
-  #     - load-balancer
-  #   networks:
-  #     - public-network
-  #     - private-network
+  gateway:
+    build: ./GatewayService
+    ports:
+      - "5000:5000"
+    # depends_on:
+      # - load-balancer
+    networks:
+      - public-network
+      - private-network
 
   auth:
     build: ./AuthService
     ports:
       - "3000:3000"
     environment:
-      - MONGO_URL=mongodb://authServiceMongo:27017/ping_authDb
+      - MONGO_URL=mongodb://userServiceMongo:27017/ping_authDb
     depends_on:
-      - authServiceMongo
+      - userServiceMongo
     networks:
       - private-network
-  authServiceMongo:
-    image: mongo:latest
-    container_name: authServiceMongo
-    volumes:
-      - ./data/authService:/data/db
-    ports:
-      - "27017:27017"
-    networks:
-      - private-network
+  # authServiceMongo:
+  #   image: mongo:latest
+  #   container_name: authServiceMongo
+  #   volumes:
+  #     - ./data/authService:/data/db
+  #   ports:
+  #     - "27015:27017"
+  #   networks:
+  #     - private-network
 
   user:
     build: ./UserService
@@ -57,7 +57,7 @@ services:
     volumes:
       - ./data/userService:/data/db
     ports:
-      - "27016:27017"
+      - "27017:27017"
     networks:
       - private-network
 

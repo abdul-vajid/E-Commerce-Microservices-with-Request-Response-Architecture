@@ -2,7 +2,7 @@ import { createLogger, format, transports } from 'winston';
 import fs from 'fs';
 // import LogConstants from '../utils/constants/logConstants'
 
-const environment = "dev"
+const environment = "dev1"
 const logger = createLogger({
   level: 'silly',
   format: format.combine(

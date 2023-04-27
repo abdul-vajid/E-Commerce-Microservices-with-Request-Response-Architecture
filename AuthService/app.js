@@ -11,18 +11,15 @@ app.use(bodyParser.json({ extended: true }));
 import router from './src/router/index.js'
 app.use('/api/v1/', router);
 
-const PORT = process.env.PORT || 3000;
+import errorHandler from './src/utils/handlers/errorHandler.js';
+app.use(errorHandler);
 
-app.use((err, req, res, next) => {
-    console.error(JSON.stringify(err));
-    res.status(500).send({status: 500, message: JSON.stringify(err)});
-})
+const PORT = process.env.PORT || 3000;
 
 /* MONGOOSE SETUP*/
 import mongoose from 'mongoose';
 const MONGO_URL = process.env.MONGO_URL;
-// const MONGO_URL = "mongodb://authServiceMongo:27013/ping_authDb"
-console.log("------------Mongo URL--------------", MONGO_URL);
+// const MONGO_URL = "mongodb://127.0.0.1:27017/ping_authDb"
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true,

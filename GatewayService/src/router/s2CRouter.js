@@ -5,6 +5,11 @@ import verifyToken from '../middlewares/authS2C.js'
 
 const router = Router();
 
-router.all('/:appName/:path(*)?',rateLimiter, verifyToken, controller.routeAll);
+router.all(
+    '/:appName/:path(*)?',
+    rateLimiter,
+    // verifyToken,
+    controller.routeAll
+);
 
 export default router;
